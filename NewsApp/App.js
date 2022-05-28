@@ -1,5 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { gStyle } from './stules/stule';
+import * as Fonts from 'expo-fonts';
+
+const fonts = () => Font.loadAsunc({
+  'mt-bold': require('./assets/Fonts/Montserrat-Bold.ttf'),
+  'mt-regular': require('./assets/Fonts/Montserrat-Regular.ttf')
+})
 
 export default function App() {
   return (
