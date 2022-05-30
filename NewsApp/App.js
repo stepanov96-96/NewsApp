@@ -1,27 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { gStyle } from './stules/stule';
-import * as Fonts from 'expo-fonts';
+import React, {useState} from 'react';
+import { Text, View} from 'react-native';
+import { gStyle } from './styles/style';
+import * as Font from 'expo-font';
+import AppLoading from 'expo-app-loading';
+import Main from './components/Main';
+import Contacts from './components/Contacts';
 
-const fonts = () => Font.loadAsunc({
+const fethcFonts = () =>{
+  return Font.loadAsync({ 
   'mt-bold': require('./assets/Fonts/Montserrat-Bold.ttf'),
-  'mt-regular': require('./assets/Fonts/Montserrat-Regular.ttf')
-})
+  'mt-regular': require('./assets/Fonts/Montserrat-Regular.ttf'),
+  });
+};
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  const [font, setDataFont] = useState(false);
+
+  if(font){
+    return (
+      <Main/>
+    );
+  } else {
+    return(
+      
+      <AppLoading 
+      
+      startAsync = {fethcFonts} 
+      onFinish ={() => setDataFont(true)}
+      onError={(err) => console.log(err)}
+       />
+    );
+    
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
