@@ -11,6 +11,12 @@ export const gStyle = StyleSheet.create({
         color: '#333',
         fontFamily: 'mt-bold',
         textAlign: 'center' 
+    },
+    paragraph: {
+        fontSize: 20,
+        color: '#333',
+        fontFamily: 'mt-regular',
+        textAlign: 'center' 
     }
 
 })

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import { Text, View} from 'react-native';
-import { gStyle } from './styles/style';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import Main from './components/Main';
-import Contacts from './components/Contacts';
+import MainStack from './navigate';
+import 'react-native-gesture-handler';
+
 
 const fethcFonts = () =>{
   return Font.loadAsync({ 
@@ -18,7 +18,7 @@ export default function App() {
 
   if(font){
     return (
-      <Main/>
+      <MainStack/>
     );
   } else {
     return(
