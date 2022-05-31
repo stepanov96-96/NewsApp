@@ -14,18 +14,37 @@ export default function Navigate(){
             <Stack.Screen 
                 name = "Main"
                 component = {Main}
-                options = {{title: 'main page'}}
+                options = {
+                    {
+                        title: 'main page',
+                        headerStyle: { backgroundColor: '#FA8072', height: 90},
+                        headerTitleStyle: {position: 'absolute', right: -225 },
+
+                    }
+                }
             />
 
             <Stack.Screen 
                 name = "FullInfo"
                 component = {FullInfo}
-                options = {{title: 'FullInfo'}}
+                options = {
+                    {
+                        title: 'FullInfo',
+                        headerStyle: { backgroundColor: '#FA8072', height: 90},
+                        headerTitleStyle: {position: 'absolute', right: -160 },
+                    }
+                }
             />
             <Stack.Screen 
                 name = "Contacts"
                 component = {Contacts}
-                options = {{title: 'Contacts'}}
+                options = {
+                    {
+                        title: 'Contacts',
+                        headerStyle: { backgroundColor: '#FA8072', height: 90},
+                        headerTitleStyle: {position: 'absolute', right: -160 },
+                    }
+                }
             />
         </Stack.Navigator>
     </NavigationContainer>;

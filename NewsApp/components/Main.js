@@ -1,23 +1,28 @@
 import React, {useState} from 'react';
-import {Text, View, TouchableOpacity, FlatList} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, FlatList, Image} from 'react-native';
 import { gStyle } from '../styles/style';
 
 export default function Main({navigation}) {
 
 
     const [news, setNews] = useState([
-        {name:'Title News', anons: 'short text news', full: ' loooooong text news is app'},
-        {name:'Title News Google', anons: 'short text news Google ', full: ' loooooong text news is app Google'},
-        {name:'Title News VK', anons: 'short text news VK', full: ' loooooong text news is app VK'},
+        {name:'Title News', anons: 'short text news', full: ' loooooong text news is app',key: '1', img: 'https://avatars.mds.yandex.net/get-zen_doc/1245815/pub_5ad4f9fad7bf21db3be335e3_5ad4fa0b5f4967ba45f8213e/scale_1200'},
+        {name:'Title News Google', anons: 'short text news Google ', full: ' loooooong text news is app Google',key: '1', img: 'https://fikiwiki.com/uploads/posts/2022-02/1644925836_43-fikiwiki-com-p-prikolnie-kartinki-pro-programmistov-46.jpg'},
+        {name:'Title News VK', anons: 'short text news VK', full: ' loooooong text news is app VK',key: '1', img: 'https://pcpro100.info/wp-content/uploads/2019/09/post_5d80b02ac6194.jpeg'},
     ]);
 
     return (
       <View style={gStyle.main}>
-        <Text style = {gStyle.title}>Main page</Text>
+        <Text style = {[gStyle.title, styles.header]}>Main page</Text>
         <FlatList data ={news} renderItem ={({item}) =>(
-            <TouchableOpacity onPress={() => navigation.navigate('FullInfo', item) }>
-                <Text>{item.name}</Text>
-                <Text>{item.anons}</Text>
+            <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('FullInfo', item) }>
+              <Image style = {styles.image} source = {{
+                width: '100%',
+                height: 200,
+                uri: item.img
+              }}/>
+                <Text style= {styles.title} >{item.name}</Text>
+                <Text style= {styles.anons}>{item.anons}</Text>
             </TouchableOpacity>
         )}
         />
@@ -25,3 +30,31 @@ export default function Main({navigation}) {
     );
 } 
 
+const styles = StyleSheet.create({
+  header:{
+    marginBottom:30
+  },
+  item:{
+    width:'100%',
+    marginBottom: 30,
+  },
+  title:{
+    fontFamily: 'mt-bold',
+    fontSize: 22, 
+    textAlign: 'center',
+    marginTop: 20,
+    color: '#474747'
+  },
+  anons:{
+    fontFamily: 'mt-regular',
+    fontSize: 16, 
+    textAlign: 'left',
+    marginTop: 5,
+    color: '#474747'
+  },
+  image:{
+    height: 350,
+    width: '100%'
+  },
+
+});
