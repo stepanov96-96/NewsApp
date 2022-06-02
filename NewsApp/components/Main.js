@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, FlatList, Image} from 'react-native';
 import { gStyle } from '../styles/style';
+import { Ionicons } from '@expo/vector-icons';
+import { Modal } from 'react-native-web';
+
+
 
 export default function Main({navigation}) {
 
@@ -13,7 +17,15 @@ export default function Main({navigation}) {
 
     return (
       <View style={gStyle.main}>
-        <Text style = {[gStyle.title, styles.header]}>Main page</Text>
+        <Modal visible={true}>          
+          <Ionicons name="close-circle" size={34} color="black" />
+          <View style={gStyle.main}>
+            <Text style = {[gStyle.title, styles.header]}>Add form</Text>
+          </View>
+          
+        </Modal>
+        <Ionicons name="add-circle" size={34} color="black" />
+        <Text style = {[gStyle.title, styles.header]}>Main page</Text>        
         <FlatList data ={news} renderItem ={({item}) =>(
             <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('FullInfo', item) }>
               <Image style = {styles.image} source = {{
@@ -52,9 +64,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     color: '#474747'
   },
-  image:{
-    height: 350,
-    width: '100%'
-  },
+
 
 });
