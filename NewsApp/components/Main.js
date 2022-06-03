@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, FlatList, Image} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, FlatList, Image, Modal} from 'react-native';
 import { gStyle } from '../styles/style';
 import { Ionicons } from '@expo/vector-icons';
-import { Modal } from 'react-native-web';
+import Form from './Form';
+
 
 
 
@@ -15,16 +16,30 @@ export default function Main({navigation}) {
         {name:'Title News VK', anons: 'short text news VK', full: ' loooooong text news is app VK',key: '1', img: 'https://pcpro100.info/wp-content/uploads/2019/09/post_5d80b02ac6194.jpeg'},
     ]);
 
+    const [modalWindow, setModalWindow] = useState(false);
+
+    const addArticle = (article) => {
+      setNews((list)=> {
+        article.key = Math.random().toString();
+        return [
+          article,
+          ...list
+        ]
+      });
+      setModalWindow(false);
+    };
+
     return (
       <View style={gStyle.main}>
-        <Modal visible={true}>          
-          <Ionicons name="close-circle" size={34} color="black" />
+        <Modal visible={modalWindow}>      
           <View style={gStyle.main}>
+            <Ionicons name="close-circle" size={34} color="black" onPress={() => setModalWindow(false)} />
             <Text style = {[gStyle.title, styles.header]}>Add form</Text>
+            <Form addArticle ={addArticle}/>
           </View>
           
         </Modal>
-        <Ionicons name="add-circle" size={34} color="black" />
+        <Ionicons name="add-circle" size={34} color="black" onPress={() => setModalWindow(true)}/>
         <Text style = {[gStyle.title, styles.header]}>Main page</Text>        
         <FlatList data ={news} renderItem ={({item}) =>(
             <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('FullInfo', item) }>
